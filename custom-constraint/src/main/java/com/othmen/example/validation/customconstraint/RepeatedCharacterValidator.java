@@ -22,12 +22,16 @@ public class RepeatedCharacterValidator implements ConstraintValidator<RepeatedC
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
         System.out.println(" validating " + s);
-        Objects.requireNonNull(s);
         if (repeatTimes != null) {
+            if (s == null) {
+                return false;
+            }
             if (s.length() != repeatTimes) {
                 System.out.println("not valid");
                 return false;
             }
+        } else {
+            return true;
         }
         if (s.length() > 0) {
             char c = s.charAt(0);

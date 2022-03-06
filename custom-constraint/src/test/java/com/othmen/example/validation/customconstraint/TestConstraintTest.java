@@ -51,4 +51,9 @@ public class TestConstraintTest {
                 RepeatedCharacterHolder.class.getMethod("copyOf", RepeatedCharacterHolder.class),
                 new Object[]{new RepeatedCharacterHolder("avb")}).size());
     }
+
+    @Test
+    void testMessageInterpolation() {
+
+    }
 }

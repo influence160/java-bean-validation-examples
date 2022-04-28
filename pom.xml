@@ -12,6 +12,9 @@
         <module>custom-constraint</module>
         <module>spring-core-jakarta-validation-integration</module>
         <module>basic-message-interpolation</module>
+        <module>custom-xml-constraints-definition</module>
+        <module>custom-xml-constraints-declaration</module>
+        <module>default-validation-messages</module>
     </modules>
 
     <properties>

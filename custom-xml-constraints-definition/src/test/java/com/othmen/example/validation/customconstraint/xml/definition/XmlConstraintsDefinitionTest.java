@@ -1,5 +1,7 @@
-package com.othmen.example.validation.customconstraint;
+package com.othmen.example.validation.customconstraint.xml.definition;
 
+import com.othmen.example.validation.customconstraint.RepeatedCharacterHolder;
+import com.othmen.example.validation.customconstraint.TestConstraint;
 import org.junit.jupiter.api.Test;
 
 import javax.validation.Validation;
@@ -9,13 +11,23 @@ import javax.validation.executable.ExecutableValidator;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-public class TestConstraintTest {
+public class XmlConstraintsDefinitionTest {
 
     private final TestConstraint testConstraint = new TestConstraint();
     Validator validator = Validation
             .buildDefaultValidatorFactory().getValidator();
     ExecutableValidator executableValidator = Validation
             .buildDefaultValidatorFactory().getValidator().forExecutables();
+
+    @Test
+    void test2ValidEmpty() {
+        assertEquals(1, validator.validate(new RepeatedCharacterHolder("")).size());
+    }
+
+    @Test
+    void test2ValidNull() {
+        assertEquals(1, validator.validate(new RepeatedCharacterHolder(null)).size());
+    }
 
     @Test
     void test1Valid() {
@@ -38,16 +50,6 @@ public class TestConstraintTest {
     }
 
     @Test
-    void test2ValidEmpty() {
-        assertEquals(0, validator.validate(new RepeatedCharacterHolder("")).size());
-    }
-
-    @Test
-    void test2ValidNull() {
-        assertEquals(0, validator.validate(new RepeatedCharacterHolder(null)).size());
-    }
-
-    @Test
     void test3Valid() throws NoSuchMethodException {
         assertEquals(0, executableValidator.validateParameters(new RepeatedCharacterHolder(""),
                 RepeatedCharacterHolder.class.getMethod("copyOf", RepeatedCharacterHolder.class),
@@ -56,13 +58,10 @@ public class TestConstraintTest {
 
     @Test
     void test3InValid() throws NoSuchMethodException {
-        assertEquals(1, executableValidator.validateParameters(new RepeatedCharacterHolder("aaa"),
+        assertEquals(1, executableValidator.validateParameters(new RepeatedCharacterHolder(""),
                 RepeatedCharacterHolder.class.getMethod("copyOf", RepeatedCharacterHolder.class),
                 new Object[]{new RepeatedCharacterHolder("avb")}).size());
     }
 
-    @Test
-    void testMessageInterpolation() {
 
-    }
 }

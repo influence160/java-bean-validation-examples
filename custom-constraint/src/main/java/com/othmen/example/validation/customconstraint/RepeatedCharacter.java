@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 
 /**
  *
- * @see https://beanvalidation.org/2.0/spec/#constraintdeclarationvalidationprocess-validationroutine-typevalidatorresolution
+ * @see <a href="https://beanvalidation.org/2.0/spec/#constraintdeclarationvalidationprocess-validationroutine-typevalidatorresolution">...</a>
  */
 @Documented
 @Constraint(validatedBy = RepeatedCharacterValidator.class)

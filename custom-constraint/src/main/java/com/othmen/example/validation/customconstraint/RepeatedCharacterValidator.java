@@ -8,6 +8,7 @@ import java.util.Objects;
 
 /**
  * this constraint validator checks that a string is like aaa, bb, cccccccc ...
+ * null empty strings are valid
  */
 @SupportedValidationTarget({ValidationTarget.PARAMETERS, ValidationTarget.ANNOTATED_ELEMENT})
 public class RepeatedCharacterValidator implements ConstraintValidator<RepeatedCharacter, String> {
@@ -22,17 +23,17 @@ public class RepeatedCharacterValidator implements ConstraintValidator<RepeatedC
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
         System.out.println(" validating " + s);
+        if (s == null) {
+            System.out.println("valid");
+            return true;
+        }
         if (repeatTimes != null) {
-            if (s == null) {
-                return false;
-            }
             if (s.length() != repeatTimes) {
                 System.out.println("not valid");
                 return false;
             }
-        } else {
-            return true;
         }
+
         if (s.length() > 0) {
             char c = s.charAt(0);
             for (int i = 1; i < s.length(); i++) {

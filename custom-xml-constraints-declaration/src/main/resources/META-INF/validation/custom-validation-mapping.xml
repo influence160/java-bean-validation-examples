@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<constraint-mappings
+        xmlns="http://xmlns.jcp.org/xml/ns/validation/mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/validation/mapping
+            http://xmlns.jcp.org/xml/ns/validation/mapping/validation-mapping-2.0.xsd"
+        version="2.0">
+
+    <default-package>com.othmen.example.validation.customconstraint</default-package>
+
+    <bean class="RepeatedCharacterHolder" ignore-annotations="false">
+        <field name="s1" ignore-annotations="false">
+            <constraint annotation="javax.validation.constraints.NotNull"/>
+            <constraint annotation="javax.validation.constraints.Size">
+                <message>Size of ${validatedValue} is not correct. must have between {min} {max} characters</message>
+                <element name="min" >
+                    <value>2</value>
+                </element>
+                <element name="max">
+                    <value>10</value>
+                </element>
+            </constraint>
+        </field>
+    </bean>
+
+    <bean class="TestConstraint" ignore-annotations="true">
+
+    </bean>
+</constraint-mappings>
